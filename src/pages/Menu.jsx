@@ -14,9 +14,19 @@ const normItem = (m) => ({
   description: m.description || '',
   price: Number(m.price) || 0,
   category: m.category || 'Other',
-  image: m.image || m.imageUrl || '',
+  image: m.image || m.imageUrl || getDefaultImage(m.name),
   available: m.available ?? m.inStock ?? m.isAvailable ?? true
 })
+
+// Default images for known items without photos
+const getDefaultImage = (name) => {
+  const defaults = {
+    'Paneer Tikka Burger': 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80',
+    'Gulab Jamun Cheesecake': 'https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?auto=format&fit=crop&w=800&q=80',
+    'Cheese Garlic Naan Bites': 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80'
+  }
+  return defaults[name] || ''
+}
 
 export default function Menu() {
   const { slug, tableId } = useParams()
@@ -393,7 +403,11 @@ function MenuItemCard({ item, cart }) {
           </p>
         )}
         <div className="mt-auto pt-2 flex items-center justify-between">
-          <span className="font-extrabold text-lg text-brand-600">{inr(item.price)}</span>
+          {item.price > 0 ? (
+            <span className="font-extrabold text-lg text-brand-600">{inr(item.price)}</span>
+          ) : (
+            <span className="font-extrabold text-lg text-stone-300">Loading...</span>
+          )}
           {item.available &&
             (qty === 0 ? (
               <button

@@ -22,7 +22,7 @@ const steps = [
     title: 'Instant QR Scan',
     text: 'Customers simply point their camera at the table QR code. Instant menu loading without downloading any mobile app.',
     tag: 'Step 1',
-    image: 'https://images.unsplash.com/photo-1595079672139-cee25608b474?auto=format&fit=crop&w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80'
   },
   {
     icon: Smartphone,
@@ -343,7 +343,7 @@ export default function Landing() {
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link to="/signup">
-                  <Button size="lg" className="!rounded-2xl bg-white text-stone-900 hover:bg-orange-50 font-bold h-13 px-8 shadow-xl border-0">
+                  <Button size="lg" className="!rounded-2xl bg-[#FF6B35]  hover:text-stone-900 hover:bg-orange-50 font-bold h-13 px-8 shadow-xl border-0">
                     Get Started Free
                   </Button>
                 </Link>
@@ -351,7 +351,7 @@ export default function Landing() {
                   <Button
                     size="lg"
                     variant="secondary"
-                    className="!rounded-2xl bg-black/20 hover:bg-black/30 text-white border-white/40 font-bold h-13 px-8 backdrop-blur-md"
+                    className="!rounded-2xl bg-black/20 hover:bg-black/30 text-stone-900 border-white/40 font-bold h-13 px-8 backdrop-blur-md"
                   >
                     Explore Demo Admin
                   </Button>
@@ -362,22 +362,60 @@ export default function Landing() {
         </section>
 
         {/* Footer */}
-        <footer className="border-t border-orange-100 bg-cream-50 py-10">
-          <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
-            <div className="flex items-center gap-3">
-              <img src="/orderkraft-logo.webp" alt="OrderKraft" className="h-8 w-auto" />
-              <p>© {new Date().getFullYear()} OrderKraft. All rights reserved.</p>
+        <footer className="border-t border-orange-100 bg-cream-50 py-12">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+              {/* Brand */}
+              <div className="md:col-span-2">
+                <div className="flex items-center gap-3 mb-3">
+                  <img src="/orderkraft-logo.webp" alt="OrderKraft" className="h-10 w-auto" />
+                </div>
+                <p className="text-sm text-stone-600 leading-relaxed max-w-sm">
+                  Contactless QR ordering for restaurants. Let guests scan, browse menus, and order instantly — zero app downloads needed.
+                </p>
+              </div>
+
+              {/* Links */}
+              <div>
+                <h4 className="font-extrabold text-sm text-stone-900 mb-3">Product</h4>
+                <div className="space-y-2 text-sm text-stone-600">
+                  <Link to="/c/spice-route/t/demo-table" className="block hover:text-stone-900 transition-colors">
+                    Customer Demo
+                  </Link>
+                  <Link to="/admin/spice-route" className="block hover:text-stone-900 transition-colors">
+                    Admin Demo
+                  </Link>
+                </div>
+              </div>
+
+              {/* Account */}
+              <div>
+                <h4 className="font-extrabold text-sm text-stone-900 mb-3">Account</h4>
+                <div className="space-y-2 text-sm text-stone-600">
+                  <Link to="/login" className="block hover:text-stone-900 transition-colors">
+                    Login
+                  </Link>
+                  <Link to="/signup" className="block hover:text-stone-900 transition-colors">
+                    Sign up
+                  </Link>
+                </div>
+              </div>
             </div>
-            <div className="flex gap-6 font-semibold">
-              <Link to="/c/spice-route/t/demo-table" className="hover:text-stone-800 transition-colors">
-                Customer Demo
-              </Link>
-              <Link to="/admin/spice-route" className="hover:text-stone-800 transition-colors">
-                Admin Demo
-              </Link>
-              <Link to="/login" className="hover:text-stone-800 transition-colors">
-                Login
-              </Link>
+
+            {/* Bottom bar */}
+            <div className="pt-8 border-t border-orange-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
+              <p>© {new Date().getFullYear()} OrderKraft. All rights reserved.</p>
+              <div className="flex gap-6 font-semibold">
+                <a href="#" className="hover:text-stone-800 transition-colors">
+                  Terms
+                </a>
+                <a href="#" className="hover:text-stone-800 transition-colors">
+                  Privacy
+                </a>
+                <a href="mailto:hello@orderkraft.com" className="hover:text-stone-800 transition-colors">
+                  Contact
+                </a>
+              </div>
             </div>
           </div>
         </footer>

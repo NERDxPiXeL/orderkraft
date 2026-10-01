@@ -214,6 +214,48 @@ function Admin() {
     }
   }, [restaurantId, tableMap])
 
+  // Demo orders simulation for spice-route
+  useEffect(() => {
+    if (!isDemo || orders.length > 0) return
+    // Seed demo orders if empty
+    const demoOrders = [
+      {
+        id: 'demo-1',
+        table: '4',
+        customerName: 'Rahul',
+        orderType: 'dine-in',
+        items: [
+          { name: 'Paneer Tikka Burger', price: 180, quantity: 2 },
+          { name: 'Cheese Garlic Naan Bites', price: 120, quantity: 1 }
+        ],
+        subtotal: 480,
+        tax: 24,
+        total: 504,
+        status: 'Pending',
+        paymentMethod: 'counter',
+        paymentStatus: 'unpaid',
+        createdAt: new Date(Date.now() - 5 * 60 * 1000).toISOString()
+      },
+      {
+        id: 'demo-2',
+        table: '2',
+        customerName: 'Priya',
+        orderType: 'dine-in',
+        items: [
+          { name: 'Gulab Jamun Cheesecake', price: 150, quantity: 1 }
+        ],
+        subtotal: 150,
+        tax: 8,
+        total: 158,
+        status: 'Preparing',
+        paymentMethod: 'upi',
+        paymentStatus: 'verified',
+        createdAt: new Date(Date.now() - 12 * 60 * 1000).toISOString()
+      }
+    ]
+    setOrders(demoOrders.map((o) => normOrder(o, tableMap)))
+  }, [isDemo, orders.length, tableMap])
+
   useEffect(() => {
     setOrdersLoading(true)
     loadOrders()
@@ -1182,15 +1224,17 @@ function TablesTab({ restaurantId, slug }) {
 
   return (
     <div>
-      <div className="bg-amber-50 border border-amber-200 rounded-2xl px-4 py-3 text-sm text-amber-800 mb-5 flex gap-2.5">
-        <AlertTriangle size={18} className="shrink-0 mt-0.5" />
-        <p>
-          Print these QR codes and place one on each table. <strong>Dev note:</strong> phones
-          can't reach <code className="bg-amber-100 px-1 rounded">localhost</code> — serve the
-          frontend on your LAN IP (e.g. <code className="bg-amber-100 px-1 rounded">http://192.168.1.5:5173</code>)
-          so scanned links open on customer phones.
-        </p>
-      </div>
+      {import.meta.env.DEV && (
+        <div className="bg-amber-50 border border-amber-200 rounded-2xl px-4 py-3 text-sm text-amber-800 mb-5 flex gap-2.5">
+          <AlertTriangle size={18} className="shrink-0 mt-0.5" />
+          <p>
+            Print these QR codes and place one on each table. <strong>Dev note:</strong> phones
+            can't reach <code className="bg-amber-100 px-1 rounded">localhost</code> — serve the
+            frontend on your LAN IP (e.g. <code className="bg-amber-100 px-1 rounded">http://192.168.1.5:5173</code>)
+            so scanned links open on customer phones.
+          </p>
+        </div>
+      )}
 
       {/* Add table */}
       <form onSubmit={addTable} className="flex gap-2 mb-5 max-w-md">

@@ -15,7 +15,16 @@ export default function useTableLabel(restaurantId, tableId) {
         const list = res.data?.tables || res.data || []
         const t = list.find((x) => String(x._id || x.id) === String(tableId))
         const n = t?.tableNumber ?? t?.number ?? t?.name
-        setLabel(n ? `Table ${n}` : `Table ${String(tableId).slice(-4).toUpperCase()}`)
+        if (n) {
+          setLabel(`Table ${n}`)
+        } else {
+          // Handle slug-like tableIds (e.g., "demo-table" → "Demo Table")
+          const slugLabel = String(tableId)
+            .split('-')
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ')
+          setLabel(slugLabel || `Table ${String(tableId).slice(-4).toUpperCase()}`)
+        }
       })
       .catch(() => {})
     return () => {

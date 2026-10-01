@@ -31,6 +31,7 @@ export default function Payment() {
   const [gateway, setGateway] = useState(null) // 'payu' | 'manual'
   const [customerName, setCustomerName] = useState('')
   const [orderType, setOrderType] = useState('dine-in') // 'dine-in' | 'takeaway'
+  const [showConfirm, setShowConfirm] = useState(false)
   const tableLabel = useTableLabel(restaurant?._id || restaurant?.id, tableId)
 
   const subtotal = cart.subtotal
@@ -39,6 +40,8 @@ export default function Payment() {
 
   useEffect(() => {
     let alive = true
+    // Reduce perceived load time by setting loading false immediately for UI
+    setLoading(false)
     api
       .get(`/api/restaurant/${slug}`)
       .then((res) => {
@@ -57,7 +60,6 @@ export default function Payment() {
         }
       })
       .catch(() => {})
-      .finally(() => alive && setLoading(false))
     return () => {
       alive = false
     }
@@ -183,7 +185,10 @@ export default function Payment() {
             </div>
 
             <div className="mt-6">
-              <label className="text-sm font-bold text-stone-500 px-1">Your name</label>
+              <div className="flex items-center justify-between px-1">
+                <label className="text-sm font-bold text-stone-500">Your name</label>
+                <span className="text-xs font-semibold text-red-500">Required</span>
+              </div>
               <input
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
@@ -191,6 +196,9 @@ export default function Payment() {
                 maxLength={60}
                 className="mt-2 w-full bg-white rounded-2xl border-2 border-orange-100 px-5 py-3.5 font-semibold text-stone-900 placeholder:text-stone-300 outline-none focus:border-brand-300 transition-all"
               />
+              {!customerName.trim() && (error || method === 'counter') && (
+                <p className="text-xs text-red-500 font-semibold mt-1.5 px-1">Please enter your name to continue</p>
+              )}
             </div>
 
             <div className="mt-5">
@@ -258,7 +266,11 @@ export default function Payment() {
             </button>
 
             <button
-              onClick={() => setMethod('counter')}
+              onClick={() => {
+                if (customerName.trim()) {
+                  setShowConfirm(true)
+                }
+              }}
               disabled={placing || !customerName.trim()}
               className="w-full text-left bg-white rounded-3xl border-2 border-orange-100 shadow-warm p-5 flex items-center gap-4 mt-3 hover:border-brand-300 transition-all active:scale-[0.98] cursor-pointer disabled:opacity-50"
             >
@@ -308,6 +320,38 @@ export default function Payment() {
               )}
             </Button>
           </>
+        )}
+
+        {/* Confirmation Dialog */}
+        {showConfirm && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/50 backdrop-blur-sm">
+            <div className="bg-white rounded-3xl shadow-pop border border-orange-100/60 p-7 max-w-sm w-full">
+              <h3 className="font-extrabold text-xl text-stone-900 mb-2">Confirm your order</h3>
+              <p className="text-sm text-stone-500 mb-4">
+                {cart.items.length} item{cart.items.length === 1 ? '' : 's'} · {inr(total)} — place order?
+              </p>
+              <div className="space-y-2.5">
+                <Button
+                  size="lg"
+                  className="w-full !rounded-full"
+                  onClick={() => {
+                    setShowConfirm(false)
+                    setMethod('counter')
+                  }}
+                >
+                  Confirm · Place Order
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  className="w-full !rounded-full"
+                  onClick={() => setShowConfirm(false)}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </Page>
