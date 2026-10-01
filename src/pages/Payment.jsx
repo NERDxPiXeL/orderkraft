@@ -172,12 +172,12 @@ export default function Payment() {
           <>
             <div className="bg-white rounded-3xl shadow-warm border border-orange-100/60 px-6 py-5 flex items-center justify-between">
               <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-stone-400">
+                <p className="text-xs font-bold uppercase tracking-widest text-stone-500">
                   Total to pay
                 </p>
                 <p className="font-extrabold text-3xl text-stone-900 mt-1">{inr(total)}</p>
               </div>
-              <div className="text-right text-xs text-stone-400 font-medium leading-relaxed">
+              <div className="text-right text-xs text-stone-500 font-medium leading-relaxed">
                 {cart.items.length} item{cart.items.length === 1 ? '' : 's'}
                 <br />
                 {tableLabel || 'Table …'}
@@ -326,7 +326,7 @@ export default function Payment() {
         {showConfirm && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/50 backdrop-blur-sm">
             <div className="bg-white rounded-3xl shadow-pop border border-orange-100/60 p-7 max-w-sm w-full">
-              <h3 className="font-extrabold text-xl text-stone-900 mb-2">Confirm your order</h3>
+              <h2 className="font-extrabold text-xl text-stone-900 mb-2">Confirm your order</h2>
               <p className="text-sm text-stone-500 mb-4">
                 {cart.items.length} item{cart.items.length === 1 ? '' : 's'} · {inr(total)} — place order?
               </p>

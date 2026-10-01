@@ -136,7 +136,7 @@ export function Spinner({ className = '' }) {
 /* ---------- Page wrapper with enter animation ---------- */
 export function Page({ children, className = '' }) {
   return (
-    <motion.div
+    <motion.main
       className={className}
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
@@ -144,12 +144,12 @@ export function Page({ children, className = '' }) {
       transition={{ duration: 0.25 }}
     >
       {children}
-    </motion.div>
+    </motion.main>
   )
 }
 
 /* ---------- Dish image with graceful fallback ---------- */
-export function DishImage({ src, alt, className = '' }) {
+export function DishImage({ src, alt, className = '', width = 96, height = 96, ...rest }) {
   const [failed, setFailed] = useState(!src)
   if (failed || !src) {
     return (
@@ -164,9 +164,12 @@ export function DishImage({ src, alt, className = '' }) {
     <img
       src={src}
       alt={alt}
+      width={width}
+      height={height}
       loading="lazy"
       onError={() => setFailed(true)}
       className={`object-cover ${className}`}
+      {...rest}
     />
   )
 }

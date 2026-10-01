@@ -78,7 +78,7 @@ export default function Landing() {
         <header className="border-b border-orange-100/80 bg-cream-50/80 backdrop-blur-xl sticky top-0 z-50">
           <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
             <Link to="/" className="flex items-center">
-              <img src="/orderkraft-logo.webp" alt="OrderKraft" className="h-11 w-auto" />
+              <img src="/orderkraft-logo.webp" alt="OrderKraft" width={180} height={44} loading="lazy" className="h-11 w-auto" />
             </Link>
 
             <div className="flex items-center gap-3">
@@ -108,7 +108,7 @@ export default function Landing() {
               animate="show"
             >
               <motion.div variants={itemVariants} className="inline-block">
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-600 text-xs font-extrabold tracking-wide uppercase">
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-700 text-xs font-extrabold tracking-wide uppercase">
                   <Sparkles size={14} className="animate-pulse" />
                   Next-Gen Contactless Dining
                 </span>
@@ -204,11 +204,14 @@ export default function Landing() {
                     <img
                       src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=200&q=80"
                       alt="Artisanal Pizza"
+                      width={56}
+                      height={56}
+                      loading="lazy"
                       className="w-14 h-14 rounded-xl object-cover shrink-0 ring-1 ring-orange-100"
                     />
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-bold text-stone-800 truncate">Artisanal Truffle Pizza</p>
-                      <p className="text-[11px] text-orange-600 font-bold">$18.50</p>
+                      <p className="text-[11px] text-orange-700 font-bold">$18.50</p>
                     </div>
                     <span className="px-2.5 py-1 rounded-full bg-orange-100 text-orange-700 font-black text-xs">
                       +1
@@ -219,11 +222,14 @@ export default function Landing() {
                     <img
                       src="https://images.unsplash.com/photo-1546171753-97d7676e4602?auto=format&fit=crop&w=200&q=80"
                       alt="Passion Drink"
+                      width={56}
+                      height={56}
+                      loading="lazy"
                       className="w-14 h-14 rounded-xl object-cover shrink-0 ring-1 ring-orange-100"
                     />
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-bold text-stone-800 truncate">Iced Mango Passion</p>
-                      <p className="text-[11px] text-orange-600 font-bold">$6.00</p>
+                      <p className="text-[11px] text-orange-700 font-bold">$6.00</p>
                     </div>
                     <span className="px-2.5 py-1 rounded-full bg-orange-100 text-orange-700 font-black text-xs">
                       +2
@@ -273,7 +279,7 @@ export default function Landing() {
         {/* How It Works Section with Step Images */}
         <section className="max-w-6xl mx-auto px-6 py-24 sm:py-32">
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="text-xs font-extrabold text-orange-600 uppercase tracking-widest">
+            <h2 className="text-xs font-extrabold text-orange-700 uppercase tracking-widest">
               Simple 3-Step Process
             </h2>
             <p className="mt-2 text-3xl sm:text-5xl font-black tracking-tight text-stone-900">
@@ -299,6 +305,9 @@ export default function Landing() {
                   <img
                     src={s.image}
                     alt={s.title}
+                    width={400}
+                    height={192}
+                    loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-white via-white/30 to-transparent" />
@@ -330,6 +339,9 @@ export default function Landing() {
               <img
                 src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80"
                 alt="Restaurant ambiance"
+                width={1200}
+                height={400}
+                loading="lazy"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -368,7 +380,7 @@ export default function Landing() {
               {/* Brand */}
               <div className="md:col-span-2">
                 <div className="flex items-center gap-3 mb-3">
-                  <img src="/orderkraft-logo.webp" alt="OrderKraft" className="h-10 w-auto" />
+                  <img src="/orderkraft-logo.webp" alt="OrderKraft" width={160} height={40} loading="lazy" className="h-10 w-auto" />
                 </div>
                 <p className="text-sm text-stone-600 leading-relaxed max-w-sm">
                   Contactless QR ordering for restaurants. Let guests scan, browse menus, and order instantly — zero app downloads needed.
@@ -377,7 +389,7 @@ export default function Landing() {
 
               {/* Links */}
               <div>
-                <h4 className="font-extrabold text-sm text-stone-900 mb-3">Product</h4>
+                <h3 className="font-extrabold text-sm text-stone-900 mb-3">Product</h3>
                 <div className="space-y-2 text-sm text-stone-600">
                   <Link to="/c/spice-route/t/demo-table" className="block hover:text-stone-900 transition-colors">
                     Customer Demo
@@ -390,7 +402,7 @@ export default function Landing() {
 
               {/* Account */}
               <div>
-                <h4 className="font-extrabold text-sm text-stone-900 mb-3">Account</h4>
+                <h3 className="font-extrabold text-sm text-stone-900 mb-3">Account</h3>
                 <div className="space-y-2 text-sm text-stone-600">
                   <Link to="/login" className="block hover:text-stone-900 transition-colors">
                     Login

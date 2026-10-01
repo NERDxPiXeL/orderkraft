@@ -159,7 +159,7 @@ export default function Track() {
                       </motion.div>
                       <span
                         className={`text-[11px] font-bold mt-2 text-center ${
-                          done ? 'text-stone-800' : 'text-stone-400'
+                          done ? 'text-stone-800' : 'text-stone-500'
                         }`}
                       >
                         {s}
@@ -183,7 +183,7 @@ export default function Track() {
 
         {/* Items */}
         <div className="bg-white rounded-[2rem] shadow-warm border border-orange-100/60 p-6 mt-4">
-          <h3 className="font-extrabold mb-4 text-stone-900">Your items</h3>
+          <h2 className="font-extrabold mb-4 text-stone-900">Your items</h2>
           <div className="space-y-3">
             {items.map((i, idx) => {
               const qty = i.quantity ?? i.qty ?? 1
@@ -192,6 +192,8 @@ export default function Track() {
                   <DishImage
                     src={i.image || i.imageUrl}
                     alt={i.name}
+                    width={48}
+                    height={48}
                     className="w-12 h-12 rounded-2xl shrink-0"
                   />
                   <div className="flex-1 min-w-0">

@@ -216,7 +216,7 @@ export default function Verifying() {
                   `Pay ${inr(order.total)} now`
                 )}
               </Button>
-              <p className="text-[11px] text-stone-400 mt-2">
+              <p className="text-[11px] text-stone-500 mt-2">
                 UPI, cards & netbanking · secured by PayU
               </p>
               {/* Hidden form: auto-submitted to PayU when payuForm arrives. */}
@@ -230,7 +230,7 @@ export default function Verifying() {
             </div>
           ) : upiLink ? (
             <>
-              <p className="text-xs font-bold text-stone-400 mt-5 mb-2">
+              <p className="text-xs font-bold text-stone-500 mt-5 mb-2">
                 Haven't paid yet? Scan with any UPI app
               </p>
               <div className="bg-white rounded-3xl border-2 border-orange-100 p-4 inline-block shadow-warm">
@@ -263,12 +263,12 @@ export default function Verifying() {
         <button
           onClick={cancelOrder}
           disabled={cancelling}
-          className="w-full text-center text-xs font-bold text-stone-400 hover:text-red-500 mt-5 py-2 transition-colors disabled:opacity-50"
+          className="w-full text-center text-xs font-bold text-stone-500 hover:text-red-500 mt-5 py-2 transition-colors disabled:opacity-50"
         >
           {cancelling ? 'Cancelling…' : "Changed your mind? Cancel this order"}
         </button>
 
-        <p className="text-[11px] text-stone-400 mt-1 text-center flex items-center justify-center gap-1">
+        <p className="text-[11px] text-stone-500 mt-1 text-center flex items-center justify-center gap-1">
           <ShieldCheck size={12} className="text-emerald-500" />
           Your order reaches the kitchen only after payment is confirmed
         </p>

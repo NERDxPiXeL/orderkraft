@@ -80,7 +80,7 @@ export default function Cart() {
             key={i.id}
             className="bg-white rounded-3xl shadow-warm border border-orange-100/60 p-3 flex items-center gap-3"
           >
-            <DishImage src={i.image} alt={i.name} className="w-16 h-16 rounded-2xl shrink-0" />
+            <DishImage src={i.image} alt={i.name} width={64} height={64} className="w-16 h-16 rounded-2xl shrink-0" />
             <div className="flex-1 min-w-0">
               <p className="font-bold text-sm truncate text-stone-900">{i.name}</p>
               <p className="text-xs text-stone-500">{inr(i.price)} each</p>
@@ -97,9 +97,9 @@ export default function Cart() {
 
         {/* Bill */}
         <div className="bg-white rounded-[1.75rem] shadow-warm border border-orange-100/60 p-6 mt-5">
-          <h3 className="font-extrabold mb-4 flex items-center gap-2 text-stone-900">
+          <h2 className="font-extrabold mb-4 flex items-center gap-2 text-stone-900">
             <Receipt size={17} className="text-brand-500" /> Bill details
-          </h3>
+          </h2>
           <div className="space-y-2.5 text-sm">
             <div className="flex justify-between">
               <span className="text-stone-500 font-medium">Subtotal</span>
@@ -129,7 +129,7 @@ export default function Cart() {
           <Button size="lg" className="w-full !rounded-full !py-4" onClick={goToPayment}>
             Proceed to Payment · {inr(total)}
           </Button>
-          <p className="flex items-center justify-center gap-1.5 text-xs text-stone-400 mt-2.5 font-medium">
+          <p className="flex items-center justify-center gap-1.5 text-xs text-stone-500 mt-2.5 font-medium">
             <ShieldCheck size={13} className="text-brand-500" /> Sent straight to the kitchen in real time
           </p>
         </div>

@@ -573,7 +573,7 @@ function OrdersTab({ orders, loading, onAdvance, onResolvePayment, onRefresh }) 
                   ))}
                 </div>
                 <div className="flex items-center justify-between mt-3 pt-3 border-t border-dashed border-stone-200">
-                  <span className="text-xs text-stone-400 flex items-center gap-1">
+                  <span className="text-xs text-stone-500 flex items-center gap-1">
                     <Clock size={12} /> {fmtTime(o.createdAt)}
                   </span>
                   <span className="font-extrabold text-lg">{inr(o.total)}</span>
@@ -702,9 +702,9 @@ function PayuCredsCard({ slug, onSaved }) {
   const inputCls = 'w-full px-4 py-2.5 rounded-xl border border-stone-200 focus:border-brand-400 focus:ring-2 focus:ring-brand-100 outline-none text-sm font-mono'
   return (
     <div className="bg-white rounded-2xl shadow-card border border-stone-200/70 p-6 mb-4">
-      <h3 className="font-extrabold text-lg flex items-center gap-2">
+      <h2 className="font-extrabold text-lg flex items-center gap-2">
         <ShieldCheck size={20} className="text-brand-600" /> PayU online payments
-      </h3>
+      </h2>
       <p className="text-sm text-stone-500 mt-1 leading-relaxed">
         Paste <b>your own</b> PayU merchant key + salt (PayU dashboard → Account). Customer
         payments settle <b>directly into your bank account</b> — other cafes never see or
@@ -712,7 +712,7 @@ function PayuCredsCard({ slug, onSaved }) {
       </p>
       <div className="mt-4 space-y-3">
         <div>
-          <label className="text-xs font-bold uppercase tracking-wide text-stone-400">Merchant key</label>
+          <label className="text-xs font-bold uppercase tracking-wide text-stone-500">Merchant key</label>
           <input
             value={key}
             onChange={(e) => setKey(e.target.value)}
@@ -722,7 +722,7 @@ function PayuCredsCard({ slug, onSaved }) {
           />
         </div>
         <div>
-          <label className="text-xs font-bold uppercase tracking-wide text-stone-400">Merchant salt</label>
+          <label className="text-xs font-bold uppercase tracking-wide text-stone-500">Merchant salt</label>
           <div className="relative mt-1.5">
             <input
               type={showSalt ? 'text' : 'password'}
@@ -735,7 +735,7 @@ function PayuCredsCard({ slug, onSaved }) {
             <button
               type="button"
               onClick={() => setShowSalt((s) => !s)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-stone-400 hover:text-stone-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-stone-500 hover:text-stone-700"
             >
               {showSalt ? 'Hide' : 'Show'}
             </button>
@@ -748,7 +748,7 @@ function PayuCredsCard({ slug, onSaved }) {
             onChange={(e) => setTestMode(e.target.checked)}
             className="w-4 h-4 accent-orange-600"
           />
-          Test mode <span className="text-stone-400 font-normal">(uncheck only after PayU KYC approval, for LIVE payments)</span>
+          Test mode <span className="text-stone-500 font-normal">(uncheck only after PayU KYC approval, for LIVE payments)</span>
         </label>
         <div className="flex gap-2">
           <Button onClick={save} disabled={saving}>{saving ? 'Saving…' : 'Save PayU credentials'}</Button>
@@ -814,9 +814,9 @@ function PaymentsTab({ slug }) {
       <PayuStatusCard slug={slug} refreshKey={payuRefresh} />
       <PayuCredsCard slug={slug} onSaved={() => setPayuRefresh((k) => k + 1)} />
       <div className="bg-white rounded-2xl shadow-card border border-stone-200/70 p-6">
-        <h3 className="font-extrabold text-lg flex items-center gap-2">
+        <h2 className="font-extrabold text-lg flex items-center gap-2">
           <Wallet size={20} className="text-brand-600" /> UPI payments
-        </h3>
+        </h2>
         <p className="text-sm text-stone-500 mt-1 leading-relaxed">
           Enter the UPI ID that customer payments should go to. At checkout, customers see a
           QR with the exact bill amount and a reference code — you confirm each payment from
@@ -827,7 +827,7 @@ function PaymentsTab({ slug }) {
           <Skeleton className="h-12 mt-4" />
         ) : (
           <div className="mt-4">
-            <label className="text-xs font-bold uppercase tracking-wide text-stone-400">
+            <label className="text-xs font-bold uppercase tracking-wide text-stone-500">
               Your UPI ID
             </label>
             <div className="flex gap-2 mt-1.5">
@@ -1110,7 +1110,7 @@ function MenuTab({ restaurantId }) {
                 idx !== filtered.length - 1 ? 'border-b border-stone-100' : ''
               } ${d.available ? '' : 'bg-stone-50'}`}
             >
-              <DishImage src={d.imageUrl} alt={d.name} className="w-12 h-12 rounded-xl shrink-0" />
+              <DishImage src={d.imageUrl} alt={d.name} width={48} height={48} className="w-12 h-12 rounded-xl shrink-0" />
               <div className="flex-1 min-w-0">
                 <p className="font-bold text-sm truncate">{d.name}</p>
                 <p className="text-xs text-stone-500">
@@ -1286,7 +1286,7 @@ function TablesTab({ restaurantId, slug }) {
                 <div className="bg-white p-3 rounded-xl border-2 border-stone-900">
                   <QRCodeSVG value={url} size={160} level="M" />
                 </div>
-                <p className="text-xs text-stone-400 mt-3 break-all text-center font-mono">{url}</p>
+                <p className="text-xs text-stone-500 mt-3 break-all text-center font-mono">{url}</p>
                 <Button
                   variant="secondary"
                   size="sm"
@@ -1356,7 +1356,7 @@ function AnalyticsTab({ restaurantId }) {
           {lastUpdated
             ? `Updated ${lastUpdated.toLocaleTimeString('en-IN')}`
             : 'Loading...'}
-          <span className="text-stone-300"> · auto-refreshes every 30s</span>
+          <span className="text-stone-500"> · auto-refreshes every 30s</span>
         </p>
         <button
           onClick={load}

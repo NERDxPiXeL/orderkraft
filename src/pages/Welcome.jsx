@@ -75,7 +75,14 @@ export default function Welcome() {
       {/* Cover */}
       <div className="relative h-72 sm:h-80 overflow-hidden rounded-b-[2.5rem] shadow-warm">
         {cover ? (
-          <img src={cover} alt={restaurant.name} className="w-full h-full object-cover" />
+          <img
+            src={cover}
+            alt={restaurant.name}
+            width={800}
+            height={320}
+            loading="lazy"
+            className="w-full h-full object-cover"
+          />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-brand-400 via-brand-600 to-brand-900" />
         )}
@@ -159,8 +166,8 @@ export default function Welcome() {
           ))}
         </motion.div>
 
-        <p className="text-center text-xs text-stone-400 mt-8">
-          Powered by <span className="font-bold text-brand-600">OrderKraft</span> · contactless ordering
+        <p className="text-center text-xs text-stone-500 mt-8">
+          Powered by <span className="font-bold text-brand-700">OrderKraft</span> · contactless ordering
         </p>
       </div>
     </Page>

@@ -174,7 +174,7 @@ export default function Menu() {
               <h1 className="font-extrabold text-xl truncate text-stone-900">
                 {restaurant?.name || 'Menu'}
               </h1>
-              <p className="text-xs font-semibold text-brand-600 flex items-center gap-1">
+              <p className="text-xs font-semibold text-brand-700 flex items-center gap-1">
                 <Armchair size={12} /> {tableLabel || 'Table …'}
               </p>
             </div>
@@ -325,7 +325,7 @@ export default function Menu() {
                         key={i.id}
                         className="bg-white rounded-2xl shadow-warm border border-orange-100/60 p-3 flex items-center gap-3"
                       >
-                        <DishImage src={i.image} alt={i.name} className="w-14 h-14 rounded-xl shrink-0" />
+                        <DishImage src={i.image} alt={i.name} width={56} height={56} className="w-14 h-14 rounded-xl shrink-0" />
                         <div className="flex-1 min-w-0">
                           <p className="font-bold text-sm truncate text-stone-900">{i.name}</p>
                           <p className="text-xs text-stone-500">{inr(i.price)} each</p>
@@ -383,7 +383,7 @@ function MenuItemCard({ item, cart }) {
         item.available ? '' : 'opacity-60'
       }`}
     >
-      <DishImage src={item.image} alt={item.name} className="w-24 h-24 rounded-2xl shrink-0" />
+      <DishImage src={item.image} alt={item.name} width={96} height={96} className="w-24 h-24 rounded-2xl shrink-0" />
       <div className="flex-1 min-w-0 flex flex-col">
         <div className="flex items-start justify-between gap-2">
           <h3 className="font-bold text-[15px] leading-snug text-stone-900">{item.name}</h3>
@@ -398,7 +398,7 @@ function MenuItemCard({ item, cart }) {
             {item.description}
           </p>
         ) : (
-          <p className="text-xs text-stone-400 mt-1 flex items-center gap-1">
+          <p className="text-xs text-stone-500 mt-1 flex items-center gap-1">
             <Star size={11} className="text-amber-400 fill-amber-400" /> Chef's special
           </p>
         )}
@@ -406,7 +406,7 @@ function MenuItemCard({ item, cart }) {
           {item.price > 0 ? (
             <span className="font-extrabold text-lg text-brand-600">{inr(item.price)}</span>
           ) : (
-            <span className="font-extrabold text-lg text-stone-300">Loading...</span>
+            <span className="font-extrabold text-lg text-stone-500">Loading...</span>
           )}
           {item.available &&
             (qty === 0 ? (
